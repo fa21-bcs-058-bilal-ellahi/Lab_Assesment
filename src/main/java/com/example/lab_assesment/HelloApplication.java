@@ -1,22 +1,15 @@
 package com.example.lab_assesment;
 
-import javafx.animation.RotateTransition;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -30,8 +23,6 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
 
         GridPane root = new GridPane();
         Scene scene = new Scene(root,600,500);
@@ -81,56 +72,48 @@ public class HelloApplication extends Application {
         root.add(down_btn,5,8);
 
 
+
         up_btn.setOnAction(u ->{
-            if (up_btn.isPressed()); {
+            if (up_btn.isPressed());
+            x=y;
+            y-=20;
+            moving_btn.setTranslateY(y);
 
-                moving_btn.setTranslateY(y-=20);
-
-        }});
+        });
         /*right_btn.setOnAction(r -> {
                 });*/
 
-        down_btn.setOnAction(u ->{
-            if (down_btn.isPressed()); {
-                moving_btn.setTranslateY( x+=20);
-
-            }});
+        down_btn.setOnAction(d ->{
+            if (down_btn.isPressed());
+            y=x;
+            x+=20;
+            moving_btn.setTranslateY(x);
+        });
 
 
 
 
 
        right_btn.setOnAction(r ->{
-
-
            if(i>390)
-           {
-               j+= 10;
-               moving_btn.setTranslateY(j);
+           {   j+= 30;
+               moving_btn.setTranslateY(j);}
+           else {
+               i += 30;
+               moving_btn.setTranslateX(i);
+               java.awt.Toolkit.getDefaultToolkit().beep();
+               System.out.println("\007");
 
-           }
-
-           else
-           i+=30;
-           moving_btn.setTranslateX(i);
-
-          java.awt.Toolkit.getDefaultToolkit().beep();
-           System.out.println("\007");
-
-           try {
-               Thread.sleep(10); // introduce delay
-           } catch (InterruptedException e) {
-           }
-
+               try {
+                   Thread.sleep(10); // introduce delay
+               } catch (InterruptedException e) {}
 
       /*     final Runnable runnable = (Runnable) Toolkit.getDefaultToolkit().getDesktopProperty("beep.default");
 
            if (runnable != null) {
                runnable.run();
            }
-*/
-
-       });
+*/          }});
 
 
         left_btn.setOnAction(r ->{
@@ -139,9 +122,13 @@ public class HelloApplication extends Application {
             {
                 moving_btn.setTranslateY(j+= 10);
             }
+
             else
+            {
             i-=30;
             moving_btn.setTranslateX(i);
+            }
+
         });
 
 
